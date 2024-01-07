@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS VACCINES
+(
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    target_Disease VARCHAR(255),
+    means_of_admin VARCHAR(255),
+    target_animal VARCHAR(255),
+    info_id BIGINT
+);
+
+CREATE SEQUENCE vaccine_seq
+    START WITH 1
+    INCREMENT BY 50
+    MINVALUE 1
+    MAXVALUE 999999999
+    CYCLE;
+
+
+
