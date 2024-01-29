@@ -9,14 +9,18 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 @Entity
-@Table(name = "info")
+@Table(name = "profile")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class pet_health_Info {
-    @OneToOne
-    @JoinColumn(name = "pet_id")
-    private Pet pet;
+public class Profile {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profile_seq_gen")
+    @SequenceGenerator(name = "profile_seq_gen",
+            sequenceName = "profile_seq",
+            initialValue = 1,
+            allocationSize = 50)
+    private Long id;
     private double weight;
     private int age;
     @Enumerated(EnumType.STRING)
@@ -28,11 +32,8 @@ public class pet_health_Info {
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List <Vaccine> vaccines;
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "info_seq_gen")
-    @SequenceGenerator(name = "info_seq_gen",
-            sequenceName = "info_seq",
-            initialValue = 1,
-            allocationSize = 50)
-    private Long id;
+
 }
+
+
+

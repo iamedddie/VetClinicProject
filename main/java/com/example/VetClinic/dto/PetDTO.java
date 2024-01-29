@@ -1,6 +1,6 @@
 package com.example.VetClinic.dto;
 
-import com.example.VetClinic.model.pet_health_Info;
+import com.example.VetClinic.model.Profile;
 import com.example.VetClinic.model.Owner;
 import com.example.VetClinic.model.enums.Category;
 import com.example.VetClinic.model.enums.Species;
@@ -17,7 +17,7 @@ public class PetDTO {
     private String name;
 
     private Owner owner;
-    private pet_health_Info info;
+    private Profile info;
     private String breed;
     private Species species;
 }

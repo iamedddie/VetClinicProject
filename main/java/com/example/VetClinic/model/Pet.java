@@ -14,6 +14,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pet_seq_gen")
+    @SequenceGenerator(name = "pet_seq_gen",
+            sequenceName = "pet_seq",
+            initialValue = 1,
+            allocationSize = 50)
+    private Long id;
     @Enumerated(EnumType.STRING)
     private Category category;
     private String name;
@@ -22,7 +30,8 @@ public class Pet {
     @JoinColumn(name ="owner_id", referencedColumnName = "id")
     private  Owner owner;
     @OneToOne
-    private pet_health_Info info;
+    @JoinColumn(name = "profile_id",referencedColumnName ="id" )
+    private Profile profile;
     private String breed;
     @Enumerated(EnumType.STRING)
     private Species species;
@@ -31,54 +40,18 @@ public class Pet {
         this.name = name;
     }
 
-    public Pet(Long id, String name, Owner owner, pet_health_Info info, Species species, String breed ) {
+
+    public Pet(Long id, String name, Owner owner, Profile profile, String breed, Species species , Category category ) {
         this.name = name;
         this.owner = owner;
-        this.info = info;
-        this.breed = breed;
+        this.profile = profile;
         this.species = species;
-        this.id = id;
-    }
-    public Pet(Long id, String name, Owner owner, pet_health_Info info, Species species, Category category ) {
-        this.name = name;
-        this.owner = owner;
-        this.info = info;
-        this.category = category;
-        this.species = species;
-        this.id = id;
-    }
-    public Pet(Long id, String name, Owner owner, pet_health_Info info, String breed, Category category ) {
-        this.name = name;
-        this.owner = owner;
-        this.info = info;
         this.category = category;
         this.breed = breed;
         this.id = id;
     }
 
-    public Pet(Long id, String name, pet_health_Info info, String breed, Species species, Category category) {
-        this.name = name;
-        this.species = species;
-        this.info = info;
-        this.category = category;
-        this.breed = breed;
-        this.id = id;
-    }
-    public Pet(Long id, Owner owner, pet_health_Info info, String breed, Species species, Category category) {
-        this.owner = owner;
-        this.species = species;
-        this.info = info;
-        this.category = category;
-        this.breed = breed;
-        this.id = id;
-    }
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pet_seq_gen")
-    @SequenceGenerator(name = "pet_seq_gen",
-            sequenceName = "pet_seq",
-            initialValue = 1,
-            allocationSize = 50)
-    private Long id;
+
 
 
 }
